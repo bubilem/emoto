@@ -1,2 +1,3 @@
-# emoto
-EMOTO project
+# EMOTO
+
+School EMOTO project
