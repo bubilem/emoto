@@ -16,6 +16,6 @@ class StatusModel
 
     public static function mess(int $statusKey): string
     {
-        return self::$statuses[$statusKey] ?? '';
+        return (self::$statuses[$statusKey] ?? '');
     }
 }

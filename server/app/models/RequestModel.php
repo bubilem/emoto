@@ -17,7 +17,7 @@ class RequestModel
 
     public function getUriPart(int $index = 0): string
     {
-        return (string) $this->uri[$index] ?? '';
+        return (string) ($this->uri[$index] ?? '');
     }
 
     public function getData(): array
