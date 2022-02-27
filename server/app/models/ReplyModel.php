@@ -6,7 +6,9 @@ class ReplyModel
 
     public function __construct()
     {
-        $this->data = [];
+        $this->data = [
+            'dttm' => date("Y-m-d H:i:s")
+        ];
     }
 
     public function set($key, $value): ReplyModel
@@ -24,6 +26,12 @@ class ReplyModel
             'status_mess',
             StatusModel::mess($statusKey) . ($special ? " [$special]" : '')
         );
+    }
+
+    public function sign(string $secret): ReplyModel
+    {
+        $this->data['signature'] = SignatureModel::make($secret, $this->data);
+        return $this;
     }
 
     public function __toString()

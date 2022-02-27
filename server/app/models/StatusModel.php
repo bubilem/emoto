@@ -10,7 +10,10 @@ class StatusModel
         5 => 'Cannot connect to database',
         6 => 'Vehicle not found in database',
         7 => 'Cannot insert log to database',
-        8 => 'No log'
+        8 => 'No log',
+        9 => 'Bad signature',
+        10 => 'Log saved',
+        11 => 'Log found'
 
     ];
 

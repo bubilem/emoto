@@ -21,7 +21,9 @@ POST:
 ```
 {
     "dttm": "2022-02-20 13:45:50",
-    "message" => "Hello"
+    "vehicle_code": "ZIDAN",
+    "message": "Hello",
+    "signature": "this-is-40hexadigits-signature"
 }
 ```
 
@@ -29,8 +31,12 @@ POST:
 
 ```
 {
-    "dttm": "2022-02-20 13:45:50",
-    "message" => "Hello"
+    "dttm": "2022-02-20 13:45:51",
+    "vehicle_code": "ZIDAN",
+    "message": "Hello",
+    "status_key": 0,
+    "status_mess": "OK",
+    "signature": "this-is-40hexadigits-signature"
 }
 ```
 
@@ -38,7 +44,7 @@ POST:
 
 ## ADD LOG
 
-Add log to store
+Add log to store in database
 
 ### **Request**
 
@@ -53,9 +59,10 @@ POST:
 ```
 {
     "dttm": "2022-02-20 13:45:50",
-    "vehicle_code": "MB42",
+    "vehicle_code": "ZIDAN",
     "mileage": "5",
-    "battery_capacity": "48"
+    "battery_capacity": "48",
+    "signature": "this-is-40hexadigits-signature"
 }
 ```
 
@@ -63,10 +70,10 @@ POST:
 
 ```
 {
-    "message": "Log saved",
     "dttm":"2022-02-20 13:45:51",
-    "status_key": 0,
-    "status_mess": "OK"
+    "status_key": 10,
+    "status_mess": "Log saved",
+    "signature": "this-is-40hexadigits-signature"
 }
 ```
 
@@ -89,7 +96,7 @@ POST:
 ```
 {
     "dttm": "2022-02-22 17:23:44",
-    "vehicle_code" => "MB42"
+    "vehicle_code" => "ZIDAN"
 }
 ```
 
@@ -97,14 +104,61 @@ POST:
 
 ```
 {
+    "dttm": "2022-02-27 16:50:42",
     "log": {
-        "dttm": "2022-02-22 18:20:54",
-        "vehicle_code": "MB42",
-        "mileage": "5",
-        "battery_capacity": "48.00"
-        },
-    "dttm": "2022-02-22 17:23:44",
-    "status_key": 0,
-    "status_mess": "OK"
+        "dttm": "2022-02-27 16:40:41",
+        "vehicle_code": "ZIDAN",
+        "mileage": "0",
+        "battery_capacity": "0"
+    },
+    "status_key": 11,
+    "status_mess": "Log found",
+    "signature": "211dbd8a5e44ae3a069d13924f3b844f455574cb"
 }
 ```
+
+---
+
+## STATUS CODES
+
+```
+ 0 'OK'
+ 1 'Communication failure'
+ 2 'Bad operation',
+ 3 'Class not found',
+ 4 'Incomplete input data',
+ 5 'Cannot connect to database',
+ 6 'Vehicle not found in database',
+ 7 'Cannot insert log to database',
+ 8 'No log',
+ 9 'Bad signature',
+10 'Log saved',
+11 'Log found'
+```
+
+---
+
+## SIGNATURE
+
+### **Input data**
+
+```
+{
+    "dttm": "2022-02-20 13:45:50",
+    "vehicle_code": "ZIDAN"
+}
+```
+
+### **Signature**
+
+We create the signature by taking the input values as a string, which is separated by a pipe character. At the end of the string is a secret.
+
+```
+signature = sha1("2022-02-20 13:45:50|ZIDAN|this-is-secret")
+```
+
+---
+
+## LICENSE
+
+MIT

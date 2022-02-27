@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1:3306
--- Vytvořeno: Sob 19. úno 2022, 15:51
+-- Vytvořeno: Ned 27. úno 2022, 16:41
 -- Verze serveru: 5.7.26
 -- Verze PHP: 7.3.5
 
@@ -32,22 +32,20 @@ DROP TABLE IF EXISTS `log`;
 CREATE TABLE IF NOT EXISTS `log` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `dttm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `mileage` int(10) UNSIGNED DEFAULT NULL,
-  `battery_capacity` decimal(5,2) DEFAULT NULL,
+  `mileage` int(10) UNSIGNED DEFAULT NULL COMMENT 'meter',
+  `battery_capacity` float DEFAULT NULL COMMENT '0-1',
+  `gps` varchar(45) DEFAULT NULL COMMENT 'WGS84',
   `vehicle_code` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_log_vehicle_idx` (`vehicle_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Vypisuji data pro tabulku `log`
 --
 
-INSERT INTO `log` (`id`, `dttm`, `mileage`, `battery_capacity`, `vehicle_code`) VALUES
-(1, '2022-02-19 09:48:03', 0, '80.00', 'MB42'),
-(2, '2022-02-19 09:50:20', 2, '75.00', 'MB42'),
-(3, '2022-02-19 13:50:16', 3, '50.00', 'MB42'),
-(4, '2022-02-19 13:51:47', 5, '48.00', 'MB42');
+INSERT INTO `log` (`id`, `dttm`, `mileage`, `battery_capacity`, `gps`, `vehicle_code`) VALUES
+(1, '2022-02-27 15:40:41', 0, 0, NULL, 'ZIDAN');
 
 -- --------------------------------------------------------
 
@@ -59,6 +57,7 @@ DROP TABLE IF EXISTS `vehicle`;
 CREATE TABLE IF NOT EXISTS `vehicle` (
   `code` varchar(10) NOT NULL,
   `description` varchar(255) NOT NULL,
+  `secret` varchar(24) NOT NULL,
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -66,8 +65,8 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
 -- Vypisuji data pro tabulku `vehicle`
 --
 
-INSERT INTO `vehicle` (`code`, `description`) VALUES
-('MB42', 'Test motorcycle');
+INSERT INTO `vehicle` (`code`, `description`, `secret`) VALUES
+('ZIDAN', 'Test emoto', 'OzRFZqwb5JTlZX929a91');
 
 --
 -- Omezení pro exportované tabulky
