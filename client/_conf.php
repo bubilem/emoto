@@ -22,7 +22,7 @@ function sendRequest(string $operation, array $data): array
     return json_decode(
         !empty($result)
             ? $result
-            : '{"staus_key":"1","status_mess":"Communication failure"}',
+            : '{"status_key":"1","status_mess":"Communication failure"}',
         true
     );
 }

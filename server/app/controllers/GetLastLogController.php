@@ -44,7 +44,7 @@ class GetLastLogController extends MainController
 
         // Log load
         $result = $db->query(
-            "SELECT dttm, vehicle_code, mileage, battery_capacity " .
+            "SELECT dttm, vehicle_code, mileage, battery_capacity, gps " .
                 "FROM log " .
                 "WHERE vehicle_code = '" . $vehicle['code'] . "'" .
                 "ORDER BY dttm DESC LIMIT 1"

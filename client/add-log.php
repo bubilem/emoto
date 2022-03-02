@@ -6,7 +6,8 @@ $data = [
     "dttm" => date("Y-m-d H:i:s"),
     "vehicle_code" => "ZIDAN",
     "mileage" => "0",
-    "battery_capacity" => "0"
+    "battery_capacity" => "0",
+    "gps" => "50.9128308N, 14.6171558E"
 ];
 
 // add signature to data

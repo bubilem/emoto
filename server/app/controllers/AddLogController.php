@@ -10,7 +10,8 @@ class AddLogController extends MainController
             empty($requestData['dttm']) ||
             empty($requestData['vehicle_code']) ||
             !isset($requestData['mileage']) ||
-            !isset($requestData['battery_capacity'])
+            !isset($requestData['battery_capacity']) ||
+            !isset($requestData['gps'])
         ) {
             echo (string) $this->reply->status(4);
             return;
@@ -46,10 +47,11 @@ class AddLogController extends MainController
 
         // Add log to the database
         $result = $db->query(
-            "INSERT INTO log (vehicle_code, mileage, battery_capacity) VALUES " .
+            "INSERT INTO log (vehicle_code, mileage, battery_capacity, gps) VALUES " .
                 "('" . $vehicle['code'] . "', " .
                 intval($requestData['mileage']) . ", " .
-                floatval($requestData['battery_capacity']) . ")"
+                floatval($requestData['battery_capacity']) . ", " .
+                "'" . trim($requestData['gps']) . "')"
         );
         if ($db->getLastError() || !$result) {
             echo (string) $this->reply->status(7);

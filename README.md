@@ -62,6 +62,7 @@ POST:
     "vehicle_code": "ZIDAN",
     "mileage": "5",
     "battery_capacity": "48",
+    "gps": "50.9128308N, 14.6171558E",
     "signature": "this-is-40hexadigits-signature"
 }
 ```
@@ -109,7 +110,8 @@ POST:
         "dttm": "2022-02-27 16:40:41",
         "vehicle_code": "ZIDAN",
         "mileage": "0",
-        "battery_capacity": "0"
+        "battery_capacity": "0",
+        "gps": "50.9128308N, 14.6171558E"
     },
     "status_key": 11,
     "status_mess": "Log found",
@@ -124,21 +126,21 @@ POST:
 ```
  0 'OK'
  1 'Communication failure'
- 2 'Bad operation',
- 3 'Class not found',
- 4 'Incomplete input data',
- 5 'Cannot connect to database',
- 6 'Vehicle not found in database',
- 7 'Cannot insert log to database',
- 8 'No log',
- 9 'Bad signature',
-10 'Log saved',
+ 2 'Bad operation'
+ 3 'Class not found'
+ 4 'Incomplete input data'
+ 5 'Cannot connect to database'
+ 6 'Vehicle not found in database'
+ 7 'Cannot insert log to database'
+ 8 'No log'
+ 9 'Bad signature'
+10 'Log saved'
 11 'Log found'
 ```
 
 ---
 
-## SIGNATURE
+## SIGNATURE EXAMPLE
 
 ### **Input data**
 
