@@ -4,6 +4,8 @@ require_once('_conf.php');
 require_once(APP_DIR . 'utils/Loader.php');
 spl_autoload_register('Loader::loadClass');
 
+header('Access-Control-Allow-Origin: *');
+
 try {
     $request = new RequestModel();
     switch ($request->getUriPart()) {
